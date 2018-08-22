@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="App">
+	<select id="selectVendList" resultType="HashMap" parameterType="HashMap">
+		/*App.selectVendList*/
+		SELECT
+    		*
+    	FROM
+    		MNG_VEND_TB
+    	ORDER BY VEND_NUM
+	</select> 
+	
+	<insert id="insertVend" parameterType="Map">
+    	/*App.insertVend*/
+    	INSERT INTO MNG_VEND_TB
+    	(
+    		VEND_NAME
+    		,VEND_DIV
+    		,VEND_REP
+    		,VEND_NUM
+    		,VEND_CONDITION
+    		,VEND_JONGMOK
+    		,VEND_ADDR
+    		,VEND_PHONE_NUM
+    		,VEND_FAX_NUM
+    		,VEND_MAIL_ADDR
+    	)
+    	VALUES
+    	(
+    		#{VEND_NAME}
+    		,#{VEND_DIV}
+    		,#{VEND_REP}
+    		,#{VEND_NUM}
+    		,#{VEND_CONDITION}
+    		,#{VEND_JONGMOK}
+    		,#{VEND_ADDR}
+    		,#{VEND_PHONE_NUM}
+    		,#{VEND_FAX_NUM}
+    		,#{VEND_MAIL_ADDR}
+    	)
+    	
+    </insert>
+
+
+	 <insert id="insertMaterial" parameterType="Map">
+    	/*App.insertMaterial*/
+    	INSERT INTO MNG_MATERIAL_TB
+    	(
+    		MODEL
+    		,ITEM_NUMBER
+    		,ITEM_NAME
+    		,QUALITY_MATERIAL
+    		,HEAT_TREATMENT_HARDNESS
+    		,REMARKS
+    		,VEND_SEQ
+    	)
+    	VALUES
+    	(
+    		,#{model}
+    		,,#{itemNumber}
+    		,,#{itemName}
+    		,,#{qualityMaterial}
+    		,,#{heatTreatmentHardness}
+    		,,#{remarks}
+    		,,#{vendSeq}
+    	)
+    	
+    </insert>
+    
+    
+    <select id="selectMaterialList" resultType="HashMap" parameterType="HashMap">
+		/*App.selectMaterialList*/
+		SELECT
+    		B.VEND_NAME
+    		,A.MODEL
+    		,A.ITEM_NUMBER
+    		,A.ITEM_NAME
+    		,A.QUALITY_MATERIAL
+    		,A.HEAT_TREATMENT_HARDNESS
+    		,A.REMARKS
+    	FROM
+    		MNG_MATERIAL_TB A
+    		,MNG_VEND_TB B
+    	WHERE
+    		A.VEND_SEQ = B.SEQ
+    	ORDER BY VEND_NUM
+	</select>
+</mapper>
