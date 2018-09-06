@@ -25,7 +25,7 @@
 	<div class="div-buttonGroup">
 		<button type="button" class="btn btn-success btn-lg" id="btn_search"><i class="glyphicon glyphicon-search"></i></button>
 	</div>
-	<table id="example" class="table table-striped table-bordered" style="width:100%">
+	<table id="table_vend" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
                 <th>순번</th>
@@ -49,7 +49,7 @@
 			
 	<script>
 		$(document).ready(function() {
-			$('#example').DataTable({
+			$('#table_vend').DataTable({
 				select: {
 		            style: 'single'
 		        }
@@ -65,8 +65,8 @@
 		
 		
 		/*거래처 테이블 Row 더블클릭 이벤트*/
-		$('#example tbody').on('dblclick', 'tr', function () {
-			var data = $('#example').DataTable().row( this ).data();
+		$('#table_vend tbody').on('dblclick', 'tr', function () {
+			var data = $('#table_vend').DataTable().row( this ).data();
 			
 			//거래처 코드
 			$(parent.document).find("#input_seq").val(data[0]);

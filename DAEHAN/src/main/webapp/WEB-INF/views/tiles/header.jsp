@@ -73,7 +73,7 @@
 						</li>
 						
 						<li class="#">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="fn_main_headPageMove('main')">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" onclick="fn_main_headPageMove('manage/shippingStmt')">
 								<span class="menu-icon pull-right hidden-xs showopacity glyphicon glyphicon-print"></span> 외주 출고 명세서 출력
 							</a>
 						</li>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.dh.app.service.AppService;
@@ -76,21 +77,28 @@ public class AppController {
 	}
 	
 	@RequestMapping(value = "/searchVendList.do")
-	public String searchVendList(HttpServletRequest request, @RequestParam(value="program", required=false) String program, ModelMap model) throws Exception{
+	public ModelAndView searchVendList(HttpServletRequest request, @RequestParam(value="program", required=false) String program, ModelMap model) throws Exception{
+		ModelAndView mav = new ModelAndView();
 		List<HashMap<String,String>> list = appService.searchVendList();
 		
-		model.addAttribute("vendList", list);
+		//model.addAttribute("vendList", list);
 		
 		if(program == null) {
-			return "manage/vendManage";
+			//return "manage/vendManage";
+			mav.addObject("vendList", list);
+			mav.setViewName("manage/vendManage");
+			
+			return mav;
 		}
 		
 		if(program.equals("popup")) {
-			return "common/vendPopup";
+			mav.addObject("data", list);
+			mav.setViewName("jsonView");
 		}else {
 			throw new Exception();
 		}
-		
+		System.out.println("WHY?????????????????????????????????????????????");
+		return mav;
 	}
 	
 
